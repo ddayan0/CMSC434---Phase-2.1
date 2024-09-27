@@ -31,17 +31,26 @@ h1 {
 
 <button class="tablink" onclick="openCity('Workouts', this, 'grey')" id="defaultOpen">Text</button>
 <button class="tablink" onclick="openCity('Weight', this, 'grey')">Choices</button>
-<button class="tablink" onclick="openCity('Calories', this, 'grey')">ToDo</button>
-<button class="tablink" onclick="openCity('Stats', this, 'grey')">Profile</button>
+<button class="tablink" onclick="openCity('ToDo', this, 'grey')">ToDo</button>
+<button class="tablink" onclick="openCity('Profile', this, 'grey')">Profile</button>
 <button class="tablink" onclick="openCity('Exercises', this, 'grey')">Colors</button>
 <button class="tablink" onclick="openCity('Milestones', this, 'grey')">LR</button>
 
 <h1> </h1>
 <h1> </h1>
 <br>
-<div id="Calories" class="tabcontent">
-    <h1>London</h1>
-    <p>London is the capital city of England.</p>
+
+
+
+<div id="ToDo" class="tabcontent">
+  <h1>To Do List</h1>
+  <input type="text" id="myInput" placeholder="Title...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+  <ul id="myUL">
+    
+  </ul>
+
+
   </div>
   
   <div id="Weight" class="tabcontent">
@@ -92,9 +101,6 @@ h1 {
   </div>
 
 
-  
-
-
  
   
   <div id="Workouts" class="tabcontent">
@@ -120,9 +126,22 @@ h1 {
     </p>
   </div>
   
-  <div id="Stats" class="tabcontent">
-    <h1>Oslo</h1>
-    <p>Oslo is the capital of Norway.</p>
+  <div id="Profile" class="tabcontent">
+    <img src = "profilepic.png" id = "profile_picture" ></img>
+    <h2><b>Man Stick Jr.</b></h2>
+    <div id="Notification">
+      <button id="closeNotification">&times;</button>
+      <strong>Warning!</strong> Do not click on the profile image.
+  </div>
+    <script>
+        document.getElementById("profile_picture").addEventListener("click", function() {
+            document.getElementById("Notification").style.display = "block";
+        });
+
+        document.getElementById("closeNotification").addEventListener("click", function() {
+            document.getElementById("Notification").style.display = "none";
+        });
+    </script>
   </div>
   
   <div id="Exercises" class="tabcontent">
