@@ -148,6 +148,23 @@ input {
   background-color: #bbb;
 }
 
+#first_line {
+  background-color: #f44336;
+  color: blue;
+}
+
+#second_line {
+  background-color: blue;
+  color: red;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 8px;
+  Right: 16px;
+  font-size: 18px;
+}
+
 
 #profile_picture {
   cursor: pointer;
