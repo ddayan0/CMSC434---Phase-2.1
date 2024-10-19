@@ -11,7 +11,7 @@
   width: 640px;
   height: 960px;
   overflow: hidden;
-  background-color: powderblue;
+  background-color: #32A86D;
   position: relative;
 }
 
@@ -25,21 +25,25 @@ h1 {
 </head>
 
 <body>
-<div class = "device">
+  <div class = "device">
+    <div class = "nav-bar">
+      <button class="tablink" onclick="openCity('Workouts', this, 'grey')" id="defaultOpen">Text</button>
+      <button class="tablink" onclick="openCity('Weight', this, 'grey')">Choices</button>
+      <button class="tablink" onclick="openCity('Profile', this, 'grey')">Profile</button>
+      <button class="tablink" onclick="openCity('Exercises', this, 'grey')">Colors</button>
+      <button class="tablink" onclick="openCity('Milestones', this, 'grey')">LR</button>
+
+    </div>
 
 
 
-<button class="tablink" onclick="openCity('Workouts', this, 'grey')" id="defaultOpen">Text</button>
-<button class="tablink" onclick="openCity('Weight', this, 'grey')">Choices</button>
-<button class="tablink" onclick="openCity('ToDo', this, 'grey')">ToDo</button>
-<button class="tablink" onclick="openCity('Profile', this, 'grey')">Profile</button>
-<button class="tablink" onclick="openCity('Exercises', this, 'grey')">Colors</button>
-<button class="tablink" onclick="openCity('Milestones', this, 'grey')">LR</button>
 
-<h1> </h1>
-<h1> </h1>
-<br>
-
+    
+    
+    <h1> </h1>
+    <h1> </h1>
+    <br>
+    
 
 
 <div id="ToDo" class="tabcontent">
@@ -106,44 +110,55 @@ h1 {
  
   
   <div id="Workouts" class="tabcontent">
-    <h1>Workouts</h1>
-    <h2>This workout is taken from Health.com, view the source here: https://www.health.com/fitness/workout-schedule</h2>
+    <div class="container">
+      <header>
+        <h1>Welcome, Elvin</h1>
+        <div class="pfp"></div>
+      </header>
+      <div class="card">
+        <div class="cheader"></div>
+          <div class="icon">A</div>
+          <h2>Daily Workout</h2>
+          <div class="dots">:</div>
+        </div>
+        <div class="banner"></div>
+        <div class="content">
+          <h3>Today's Target</h3>
+          <p class="date">19 October 2024</p>
+          <ul>
+            <li>12x Sit ups</li>
+            <li>15x Push ups</li>
+            <li>20s Plank</li>
+          </ul>
+        </div>
+      </div>
 
-        <p> Warming Up and Cooling Down 
+      <div class="card">
+        <div class="cheader">
+          <div class="icon">B</div>
+          <h2>Daily Status</h2>
+        </div>
+        <div class="content">
+          <p>You've reached 80% of your daily target. Nice job!</p>
+        </div>
+      </div>
 
-        <p>Spend five to 10 minutes warming up before each workout to prevent injury. Try doing dynamic stretches—such as butt kicks and high knees—to get the blood flowing to your muscles and move your joints. End your workout with a cool down by stretching your muscles or taking a slow walk to safely bring your heart rate back to normal
-        </p>
-        
-        <p>You'll do four muscle-strengthening sessions in this sample workout : two upper-body and two lower-body days per week. Stick to the same exercises for each of those workouts, gradually boosting the weights and reps as you grow stronger.</p>
-        
+    </div>
+
     
-        
-        <p>Hold each of the following stretches for 30 seconds and then repeat on the opposite side: </p>
-        
-        <p>Calf stretch: Steady yourself against a wall, flexing your right foot upward so your toes rest against the wall. Move closer to the wall until you feel a stretch.</p>
-            <p>Hamstring stretch: Lie down on the floor next to a wall. Raise your right leg, resting your heel against the wall. Straighten your leg until you feel a stretch.</p>
-            <p>Hip flexor stretch: Place a towel under your left knee, kneeling on the floor. Place your right foot in front of you, bending your right knee. Shift your hips forward until you feel a stretch, placing your weight onto your right leg.</p>
-            <p>Shoulder stretch: Hold your right arm over your chest with your left arm.</p>
-            <p>Quad stretch: Steady yourself by holding on to a wall or the back of a chair. Grab your right ankle, pulling your heel up and back to your butt. Keep your knees pressed together.</p>
-    </p>
   </div>
   
   <div id="Profile" class="tabcontent">
     <img src = "profilepic.png" id = "profile_picture" ></img>
     <h2><b>Man Stick Jr.</b></h2>
+    <p>@ManStickJr1</p>
     <div id="Notification">
       <button id="closeNotification">&times;</button>
       <strong>Warning!</strong> Do not click on the profile image.
-  </div>
-    <script>
-        document.getElementById("profile_picture").addEventListener("click", function() {
-            document.getElementById("Notification").style.display = "block";
-        });
-
-        document.getElementById("closeNotification").addEventListener("click", function() {
-            document.getElementById("Notification").style.display = "none";
-        });
-    </script>
+    </div>
+    
+    <br>
+    
   </div>
   
   <div id="Exercises" class="tabcontent">
