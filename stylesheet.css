@@ -125,9 +125,13 @@ h2 {
   font-size: 20px;
 }
 
-.banner {
+/* .banner {
   background-color: #E6E6FA;
   height: 100px;
   margin-bottom: 15px;
+} */
+div.banner {
+  background-image: url(workoutexample.png);
+  height: 100px;
+  margin-bottom: 15px;
 }
-
