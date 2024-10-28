@@ -1,30 +1,29 @@
-<html lang=en>
-<head>
 <!-- https://www.w3schools.com/howto/howto_js_tab_header.asp -->
 <!-- https://www.w3schools.com/tags/tag_select.asp -->
 <!-- https://www.w3schools.com/tags/att_input_type_radio.asp -->
-<link rel="stylesheet" href="stylesheet.css" type="text/css">
-<title>Health App</title>
-<style>
-.device {
-  margin:auto; 
-  width: 640px;
-  height: 960px;
-  overflow: hidden;
-  background-color: #32A86D;
-  position: relative;
-  font-family:Arial, Helvetica, sans-serif;
-  border-radius: 30px;
-}
+<html lang=en>
+  <head>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    <title>Health App</title>
 
-h1 {
-  font-size: 28pt;
-}
+    <style>
+    .device {
+    margin:auto; 
+    width: 640px;
+    height: 960px;
+    overflow: hidden;
+    background-color: #32A86D;
+    position: relative;
+    font-family:Arial, Helvetica, sans-serif;
+    border-radius: 30px;
+    }
 
-</style>
+    h1 {
+    font-size: 28pt;
+    }
 
-
-</head>
+    </style>
+  </head>
 
 <body>
   <div class = "device">
@@ -49,151 +48,122 @@ h1 {
       </button>
     </div>
 
-
-
-
     
-    
-    <h1> </h1>
-    <h1> </h1>
-    <br>
-    
-
-
-<div id="Milestones" class="tabcontent">
-
-
-  </div>
-  
-
-  
-  <div id="Calories" class="tabcontent">
-    <h1>Choices</h1>
-    <h3>Hat Color #1</h3>
-    <form name="weightform">
-    <input type="radio" id = "RadioRed" name="weight_opt" value="Red">
-    <label for="RadioRed">Red</label><br>
-    <input type="radio" id = "RadioBlue" name = "weight_opt" value = "Blue">
-    <label for="RadioBlue">Blue</label><br>
-    </form>
-    
-    <h3>Hat Color #2</h3>
-    <br>
-    <select name="timeframe" id="timeframe">
-      <option value="Red">Red</option>
-      <option value="Blue">Blue</option>
-    </select>
-    <br>
-    <button onclick="printHatColors()">Print Hat Colors</button>
-    <div id = "hatColorsDisplay"></div>
-    <script>
-      function printHatColors(){
-        const radioButtons = document.getElementsByName('weight_opt');
-      let selectedRadioValue = '';
-      for(const radioButton of radioButtons){
-        if(radioButton.checked){
-          selectedRadioValue = radioButton.value;
-          break;
+    <div id="Calories" class="tabcontent">
+      <h1>Choices</h1>
+      <h3>Hat Color #1</h3>
+      <form name="weightform">
+      <input type="radio" id = "RadioRed" name="weight_opt" value="Red">
+      <label for="RadioRed">Red</label><br>
+      <input type="radio" id = "RadioBlue" name = "weight_opt" value = "Blue">
+      <label for="RadioBlue">Blue</label><br>
+      </form>
+      
+      <h3>Hat Color #2</h3>
+      <br>
+      <select name="timeframe" id="timeframe">
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+      </select>
+      <br>
+      <button onclick="printHatColors()">Print Hat Colors</button>
+      <div id = "hatColorsDisplay"></div>
+      <script>
+        function printHatColors(){
+          const radioButtons = document.getElementsByName('weight_opt');
+        let selectedRadioValue = '';
+        for(const radioButton of radioButtons){
+          if(radioButton.checked){
+            selectedRadioValue = radioButton.value;
+            break;
+          }
         }
-      }
-      const selectedDropdownValue = document.getElementById('timeframe').value;
+        const selectedDropdownValue = document.getElementById('timeframe').value;
 
-      const hatColorsDiv = document.getElementById('hatColorsDisplay');
-      hatColorsDiv.innerHTML = 
-      `
-      <p>First hat color: ${selectedRadioValue}</p>
-      <p>Second hat color: ${selectedDropdownValue}</p>
-      `;
-      }
-      
-      
-    
-    
-    
-      </script>
+        const hatColorsDiv = document.getElementById('hatColorsDisplay');
+        hatColorsDiv.innerHTML = 
+        `
+        <p>First hat color: ${selectedRadioValue}</p>
+        <p>Second hat color: ${selectedDropdownValue}</p>
+        `;
+        }
+        
+        </script>
 
-  </div>
+    </div>
 
-
- 
   
-  <div id="Workouts" class="tabcontent">
     
-    <div class="container">
-      <header>
-        <h1>Welcome, Elvin</h1>
-      </header>
-      <div class="card">
-        <div class="cheader">
-          <div class="icon">A</div>
-          <h2>Daily Workout</h2>
-          <div class="dots">:</div>
-        </div>
-        <div class="banner">&nbsp;</div>
+    <div id="Workouts" class="tabcontent">
       
-        <div class="content">
-          <h3>Today's Target</h3>
-          <p class="date">19 October 2024</p>
-          <div class="listcontent">
-            <ul>
-              <li>12x Sit ups</li>
-              <li>15x Push ups</li>
-              <li>20s Plank</li>
-              
-            </ul>
+      <div class="container">
+        <header>
+          <h1>Welcome, Elvin</h1>
+        </header>
+        <div class="card">
+          <div class="cheader">
+            <div class="icon">A</div>
+            <h2>Daily Workout</h2>
+            <div class="dots">:</div>
+          </div>
+          <div class="banner">&nbsp;</div>
+        
+          <div class="content">
+            <h3>Today's Target</h3>
+            <p class="date">19 October 2024</p>
+            <div class="listcontent">
+              <ul>
+                <li>12x Sit ups</li>
+                <li>15x Push ups</li>
+                <li>20s Plank</li>
+                
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-
-      <div class="card">
-        <div class="cheader">
-          <div class="icon">B</div>
-          <h2>Daily Status</h2>
         </div>
-        <div class="content">
-          <p>You've reached 80% of your daily target. Nice job!</p>
+
+        <div class="card">
+          <div class="cheader">
+            <div class="icon">B</div>
+            <h2>Daily Status</h2>
+          </div>
+          <div class="content">
+            <p>You've reached 80% of your daily target. Nice job!</p>
+          </div>
         </div>
+
       </div>
 
+
+    <div id="Home" class="tabcontent">
+      
     </div>
 
     
-  </div>
-  
-  <div id="Profile" class="tabcontent">
-    <img src = "profilepic.png" id = "profile_picture" ></img>
-    <h2><b>Man Stick Jr.</b></h2>
-    <p>@ManStickJr1</p>
-    <div id="Notification">
-      <button id="closeNotification">&times;</button>
-      <strong>Warning!</strong> Do not click on the profile image.
+    <div id="Milestones" class="tabcontent">
+      <p>TODO</p>
     </div>
+
     
-    <br>
+    <div id="Profile" class="tabcontent">
+      <img src = "images/profilepic.png" id = "profile_picture" alt ="dkfsjlf">
+      <h2><b>Man Stick Jr.</b></h2>
+      <p>@ManStickJr1</p>
+      <div id="Notification">
+        <button id="closeNotification">&times;</button>
+        <strong>Warning!</strong> Do not click on the profile image.
+      </div>
+      
+      <br>
+      
+    </div>
+  
+
+
     
   </div>
-  
-  <div id="Exercises" class="tabcontent">
-    <h1>Colors</h1>
-    <div id="first_line">
-      <p> First line of text.</p>
-    </div>
-    <br>
-    <div id="second_line">
-      <p> Second line of text.</p>
-    </div>
-  </div>
-  
-  <div id="Milestones" class="tabcontent">
-    <div class="bottomright">Bottom Right</div>
-  </div>
-
-
-
-<script type="text/javascript" src="script.js"></script>
-</div>
-
+  <script src="script.js"></script>
 </body>
 
 </html>
