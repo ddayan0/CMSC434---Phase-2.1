@@ -9,12 +9,22 @@
   font-size: 17px;
   width: 16.66%;
   height: 70px;
-  box-sizing: border-box
+  box-sizing: border-box;
+
 }
 
 /* Change background color of buttons on hover */
 .tablink:hover {
   background-color: #777;
+}
+
+.tablink img {
+  width: 3rem;
+}
+
+/* Hover and active state for images */
+.tablink:hover img {
+  transform: scale(1.1);
 }
 
 /* Set default styles for tab content */
@@ -27,6 +37,12 @@
   align-items: center;
 }
 
+.nav-bar{
+  display: flex;
+  width: 120%;
+  position: absolute;
+  bottom: 0;
+}
 
 .listcontent {
   text-align: match-parentS;
@@ -40,12 +56,7 @@ ul{
 .device{
   position: relative
 }
-.nav-bar{
-  display: flex;
-  width: 120%;
-  position: absolute;
-  bottom: 0;
-}
+
 #profile_picture {
   cursor: pointer;
   border-radius: 50%;
@@ -131,7 +142,7 @@ h2 {
   margin-bottom: 15px;
 } */
 div.banner {
-  background-image: url(workoutexample.png);
+  background-image: url(images/workoutexample.png);
   height: 100px;
   margin-bottom: 15px;
 }

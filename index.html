@@ -14,6 +14,7 @@
   background-color: #32A86D;
   position: relative;
   font-family:Arial, Helvetica, sans-serif;
+  border-radius: 30px;
 }
 
 h1 {
@@ -28,12 +29,24 @@ h1 {
 <body>
   <div class = "device">
     <div class = "nav-bar">
-      <button class="tablink" onclick="openCity('Workouts', this, 'grey')" id="defaultOpen">Text</button>
-      <button class="tablink" onclick="openCity('Weight', this, 'grey')">Choices</button>
-      <button class="tablink" onclick="openCity('Profile', this, 'grey')">Profile</button>
-      <button class="tablink" onclick="openCity('Exercises', this, 'grey')">Colors</button>
-      <button class="tablink" onclick="openCity('Milestones', this, 'grey')">LR</button>
+      <button class="tablink" onclick="openCity('Workouts', this, 'grey')" >
+        <img src="images/dumbell_icon.png" alt="workouts">
+      </button>
+      <button class="tablink" onclick="openCity('Calories', this, 'grey')">
+        <img src="images/utensils_icon.png" alt="calories">
+      </button>
+      
+      <button class="tablink" onclick="openCity('Home', this, 'grey')" id="defaultOpen">
+        <img src="images/home_icon.svg" alt="home">
+      </button>
 
+      <button class="tablink" onclick="openCity('Milestones', this, 'grey')">
+        <img src="images/graph_icon.png" alt="milestones">
+      </button>
+
+      <button class="tablink" onclick="openCity('Profile', this, 'grey')">
+        <img src="images/profile_icon.png" alt="profile">
+      </button>
     </div>
 
 
@@ -47,20 +60,14 @@ h1 {
     
 
 
-<div id="ToDo" class="tabcontent">
-  <h1>To Do List</h1>
-  <input type="text" id="myInput" placeholder="Title...">
-  <span onclick="newElement()" class="addBtn">Add</span>
-  <br>
-  <br>
-  <br>
-  <ul id="myUL">
-  </ul>
+<div id="Milestones" class="tabcontent">
+
+
   </div>
   
 
   
-  <div id="Weight" class="tabcontent">
+  <div id="Calories" class="tabcontent">
     <h1>Choices</h1>
     <h3>Hat Color #1</h3>
     <form name="weightform">
