@@ -137,8 +137,66 @@
 
 
     <div id="Home" class="tabcontent">
-      
+      <h2>Welcome to Your Health Dashboard</h2>
+      <!-- Home page widgets including important summarized information and easy interaction -->
+        <div class="widget-container">
+            <!-- Workout of the Day Widget -->
+            <div class="widget-large">
+                <h3>Workout of the Day</h3>
+                <p>30 minutes of strength training</p>
+                <p>15 minutes of cardio</p>
+                <p>Cool down with 10 minutes of stretching</p>
+            </div>
+            <!-- Smaller widgets for calorie tracking and weight logging -->
+            <div class="widget-small-container">
+                <!-- Calorie tracking widget -->
+                <div class="widget-small">
+                    <h4>Calorie Tracking</h4>
+                    <p>You are <strong>on track</strong> with your calories today!</p>
+                    <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
+                </div>
+                
+                <!-- Weight logging widget -->
+                <div class="widget-small">
+                    <h4>Log Weight</h4>
+                    <form>
+                        <label for="weight">Enter today's weight:</label><br>
+                        <input type="number" id="weight" name="weight" placeholder="lbs" style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
+                        <button type="button" onclick="logWeight()" style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Weight</button>
+                    </form>
+                    <p id="weightDisplay" style="margin-top: 1rem; color: #333;"></p>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+      // Load weight from localStorage on page load
+      document.addEventListener('DOMContentLoaded', () => {
+            const savedWeight = localStorage.getItem('userWeight');
+            if (savedWeight) {
+                document.getElementById('weightDisplay').innerText = `Last logged weight: ${savedWeight} lbs`;
+            }
+        });
+
+        // Function to log weight and display it
+        function logWeight() {
+            const weightInput = document.getElementById('weight');
+            const weight = weightInput.value;
+
+            if (weight) {
+                // Save weight to localStorage
+                localStorage.setItem('userWeight', weight);
+
+                // Display the logged weight
+                document.getElementById('weightDisplay').innerText = `Last logged weight: ${weight} lbs`;
+
+                // Clear the input field
+                weightInput.value = '';
+            } else {
+                alert('Please enter a weight');
+            }
+        }
+    </script>
 
     
     <div id="Milestones" class="tabcontent">
