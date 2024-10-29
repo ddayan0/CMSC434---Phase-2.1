@@ -207,24 +207,67 @@
       <p>TODO</p>
     </div>
 
-    
-    <div id="Profile" class="tabcontent">
-      <img src = "images/profilepic.png" id = "profile_picture" alt ="dkfsjlf">
-      <h2><b>Man Stick Jr.</b></h2>
-      <p>@ManStickJr1</p>
-      <div id="Notification">
-        <button id="closeNotification">&times;</button>
-        <strong>Warning!</strong> Do not click on the profile image.
+    <div class="profile_container">
+
+      <style>
+        .profile_container .tabcontent {
+            background-color: white;
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .profile_container input, .profile_container textarea {
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          box-sizing: border-box;
+        }
+
+        .profile_container button {
+          background-color: #32A86D;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          width: 100%;
+          margin-top: 10px;
+
+        }
+
+
+      </style>
+      <div id="Profile" class="tabcontent">
+        <img src = "images/profilepic.png" id = "profile_picture" alt ="dkfsjlf">
+        <form id="profile_form" onsubmit="handleSubmit(event)">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter your email">
+            <label for="about">About you</label>
+            <textarea id="about" rows="6"></textarea>
+            <button type="submit">Save</button>
+
+        </form>
+        
       </div>
-      
-      <br>
-      
     </div>
   
+
+    
 
 
     
   </div>
+
+
   <script src="script.js"></script>
 </body>
 
