@@ -3,6 +3,7 @@
 <!-- https://www.w3schools.com/tags/att_input_type_radio.asp -->
 <html lang=en>
   <head>
+
     <link rel="stylesheet" href="stylesheet.css" type="text/css">
     <title>Health App</title>
 
@@ -23,28 +24,31 @@
     }
 
     </style>
-  </head>
+    <script src="https://kit.fontawesome.com/cb4fee8d79.js" crossorigin="anonymous"></script>
+</head>
 
 <body>
   <div class = "device">
     <div class = "nav-bar">
-      <button class="tablink" onclick="openCity('Workouts', this, 'grey')" >
-        <img src="images/dumbell_icon.png" alt="workouts">
+      <button class="tablink" onclick="openCity('Workouts', this, 'grey')">
+        <i class="fas fa-dumbbell"></i>
+        Workouts
       </button>
       <button class="tablink" onclick="openCity('Calories', this, 'grey')">
-        <img src="images/utensils_icon.png" alt="calories">
+        <i class="fas fa-utensils"></i>
+        Calories
       </button>
-      
       <button class="tablink" onclick="openCity('Home', this, 'grey')" id="defaultOpen">
-        <img src="images/home_icon.svg" alt="home">
+        <i class="fas fa-home"></i>
+        Home
       </button>
-
       <button class="tablink" onclick="openCity('Milestones', this, 'grey')">
-        <img src="images/graph_icon.png" alt="milestones">
+        <i class="fas fa-chart-line"></i>
+        Milestones
       </button>
-
       <button class="tablink" onclick="openCity('Profile', this, 'grey')">
-        <img src="images/profile_icon.png" alt="profile">
+        <i class="fas fa-user"></i>
+        Profile
       </button>
     </div>
 

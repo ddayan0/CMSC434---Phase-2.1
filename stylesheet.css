@@ -1,6 +1,13 @@
+.nav-bar{
+  display: flex;
+  width: 121%;
+  position: absolute;
+  bottom: 0;
+
+}
+
 .tablink {
-  background-color: #555;
-  color: white;
+  color: black; 
   float: left;
   border: none;
   outline: none;
@@ -10,7 +17,7 @@
   width: 16.66%;
   height: 70px;
   box-sizing: border-box;
-
+ 
 }
 
 /* Change background color of buttons on hover */
@@ -18,31 +25,26 @@
   background-color: #777;
 }
 
-.tablink img {
-  width: 3rem;
-}
+.tablink i {
+    margin-bottom: 4px;
+    border-radius: 40%; /* Round the shadow */
+    padding-left: 0;
+    background-color: rgba(156, 39, 176, 0.075); 
+    width: 50%;
+    padding: 7px;  
+  }
 
-/* Hover and active state for images */
-.tablink:hover img {
-  transform: scale(1.1);
-}
 
 /* Set default styles for tab content */
 .tabcontent {
+  display: block;
   color: rgb(66, 65, 65);
-  display: flex;
-  flex-direction: row;
   padding: 50px;
   text-align: center;
   align-items: center;
+
 }
 
-.nav-bar{
-  display: flex;
-  width: 120%;
-  position: absolute;
-  bottom: 0;
-}
 
 .listcontent {
   text-align: match-parentS;
