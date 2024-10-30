@@ -17,22 +17,23 @@
   width: 16.66%;
   height: 70px;
   box-sizing: border-box;
- 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Change background color of buttons on hover */
 .tablink:hover {
-  background-color: #777;
+  background-color: #c0bec1;
 }
 
-.tablink i {
-    margin-bottom: 4px;
-    border-radius: 40%; /* Round the shadow */
-    padding-left: 0;
-    background-color: rgba(156, 39, 176, 0.075); 
-    width: 50%;
-    padding: 7px;  
-  }
+.tablink img{
+  margin-bottom: 4px;
+  border-radius: 40%; 
+  padding-left: 0;
+  background-color: rgba(156, 39, 176, 0.075); 
+  width: 30%;
+  padding: 7px;  
+}
 
 
 /* Set default styles for tab content */
