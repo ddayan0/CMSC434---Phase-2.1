@@ -2,68 +2,68 @@
 <!-- https://www.w3schools.com/tags/tag_select.asp -->
 <!-- https://www.w3schools.com/tags/att_input_type_radio.asp -->
 <html lang=en>
-  <head>
 
-    <link rel="stylesheet" href="stylesheet.css" type="text/css">
-    <title>Health App</title>
+<head>
 
-    <style>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  <title>Health App</title>
+
+  <style>
     .device {
-    margin:auto; 
-    width: 640px;
-    height: 960px;
-    overflow: hidden;
-    background-color: #32A86D;
-    position: relative;
-    font-family:Arial, Helvetica, sans-serif;
-    border-radius: 30px;
+      margin: auto;
+      width: 640px;
+      height: 960px;
+      overflow: hidden;
+      background-color: #32A86D;
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+      border-radius: 30px;
     }
 
     h1 {
-    font-size: 28pt;
+      font-size: 28pt;
     }
-
-    </style>
-    <script src="https://kit.fontawesome.com/cb4fee8d79.js" crossorigin="anonymous"></script>
+  </style>
+  <script src="https://kit.fontawesome.com/cb4fee8d79.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div class = "device">
-    <div class = "nav-bar">
+  <div class="device">
+    <div class="nav-bar">
       <button class="tablink" onclick="openCity('Workouts', this, 'grey')">
-        <img src = "images/dumbbell-solid.svg" alt = "workouts">
+        <img src="images/dumbbell-solid.svg" alt="workouts">
         Workouts
       </button>
       <button class="tablink" onclick="openCity('Calories', this, 'grey')">
-        <img src = "images/utensils-solid.svg" alt = "calories">
+        <img src="images/utensils-solid.svg" alt="calories">
         Calories
       </button>
       <button class="tablink" onclick="openCity('Home', this, 'grey')" id="defaultOpen">
-        <img src = "images/house-solid.svg" alt = "home">
+        <img src="images/house-solid.svg" alt="home">
         Home
       </button>
       <button class="tablink" onclick="openCity('Milestones', this, 'grey')">
-        <img src = "images/chart-line-solid.svg" alt = "milestone">
+        <img src="images/chart-line-solid.svg" alt="milestone">
         Milestones
       </button>
       <button class="tablink" onclick="openCity('Profile', this, 'grey')">
         <!--<i class="fas fa-user"></i>-->
-        <img src = "images/user-solid.svg" alt = "profile">
+        <img src="images/user-solid.svg" alt="profile">
         Profile
       </button>
     </div>
 
-    
+
     <div id="Calories" class="tabcontent">
       <h1>Choices</h1>
       <h3>Hat Color #1</h3>
       <form name="weightform">
-      <input type="radio" id = "RadioRed" name="weight_opt" value="Red">
-      <label for="RadioRed">Red</label><br>
-      <input type="radio" id = "RadioBlue" name = "weight_opt" value = "Blue">
-      <label for="RadioBlue">Blue</label><br>
+        <input type="radio" id="RadioRed" name="weight_opt" value="Red">
+        <label for="RadioRed">Red</label><br>
+        <input type="radio" id="RadioBlue" name="weight_opt" value="Blue">
+        <label for="RadioBlue">Blue</label><br>
       </form>
-      
+
       <h3>Hat Color #2</h3>
       <br>
       <select name="timeframe" id="timeframe">
@@ -72,138 +72,348 @@
       </select>
       <br>
       <button onclick="printHatColors()">Print Hat Colors</button>
-      <div id = "hatColorsDisplay"></div>
+      <div id="hatColorsDisplay"></div>
       <script>
-        function printHatColors(){
+        function printHatColors() {
           const radioButtons = document.getElementsByName('weight_opt');
-        let selectedRadioValue = '';
-        for(const radioButton of radioButtons){
-          if(radioButton.checked){
-            selectedRadioValue = radioButton.value;
-            break;
+          let selectedRadioValue = '';
+          for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+              selectedRadioValue = radioButton.value;
+              break;
+            }
           }
-        }
-        const selectedDropdownValue = document.getElementById('timeframe').value;
+          const selectedDropdownValue = document.getElementById('timeframe').value;
 
-        const hatColorsDiv = document.getElementById('hatColorsDisplay');
-        hatColorsDiv.innerHTML = 
-        `
+          const hatColorsDiv = document.getElementById('hatColorsDisplay');
+          hatColorsDiv.innerHTML =
+            `
         <p>First hat color: ${selectedRadioValue}</p>
         <p>Second hat color: ${selectedDropdownValue}</p>
         `;
         }
-        
-        </script>
+
+      </script>
 
     </div>
 
-  
-    
+
+
     <div id="Workouts" class="tabcontent">
-      
-      <div class="container">
-        <header>
-          <h1>Welcome, Elvin</h1>
-        </header>
-        <div class="card">
-          <div class="cheader">
-            <div class="icon">A</div>
-            <h2>Daily Workout</h2>
-            <div class="dots">:</div>
-          </div>
-          <div class="banner">&nbsp;</div>
-        
-          <div class="content">
-            <h3>Today's Target</h3>
-            <p class="date">19 October 2024</p>
-            <div class="listcontent">
-              <ul>
-                <li>12x Sit ups</li>
-                <li>15x Push ups</li>
-                <li>20s Plank</li>
-                
-              </ul>
+      <h2>Today's Workouts</h2>
+      <button id="addActivityBtn">+ Add New Workout</button>
+      <div id="activitiesList"></div>
+
+      <div id="activityModal" class="modal">
+        <form id="activityForm">
+          <h3>Add New Workout</h3>
+          <div id="fields">
+            <div>
+              <label>Exercise Name:
+                <input type="text" name="name" required>
+              </label>
+            </div>
+            <div>
+              <label>Sets:
+                <input type="number" name="sets" required>
+              </label>
+            </div>
+            <div>
+              <label>Reps:
+                <input type="number" name="reps" required>
+              </label>
             </div>
           </div>
-        </div>
-        </div>
-
-        <div class="card">
-          <div class="cheader">
-            <div class="icon">B</div>
-            <h2>Daily Status</h2>
+          <div>
+            <button id="saveBtn" type="submit">Save</button>
+            <button id="cancelBtn" type="button">Cancel</button>
           </div>
-          <div class="content">
-            <p>You've reached 80% of your daily target. Nice job!</p>
-          </div>
-        </div>
-
+        </form>
       </div>
+
+
+
+      <style>
+        #Workouts {
+          max-width: 800px;
+          margin: 20px auto;
+          padding: 30px;
+          font-family: 'Segoe UI', Arial, sans-serif;
+          background-color: #32A86D;
+          color: white;
+          min-height: calc(100vh-70px);
+          position: relative;
+          z-index: 1;
+        }
+
+        .modal {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          padding: 25px;
+          border-radius: 10px;
+          color: #333;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          width: 90%;
+          max-width: 500px;
+        }
+
+        .modal h3 {
+          color: #32A86D;
+          margin-top: 0;
+          margin-bottom: 20px;
+        }
+
+        .modal::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: white;
+          z-index: -1;
+        }
+
+        .activity-item {
+          background-color: white;
+          padding: 20px;
+          border-radius: 10px;
+          margin: 15px 0;
+          color: #333;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          display: block;
+        }
+
+        .show {
+          display: block;
+        }
+
+        #addActivityBtn {
+          background-color: white;
+          color: #32A86D;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 25px;
+          font-weight: bold;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .delete-btn {
+          background-color: #ff6b6b;
+          color: white;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 20px;
+          cursor: pointer;
+        }
+
+        #saveBtn {
+          background-color: #34b96c;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+
+        #cancelBtn {
+          background-color: #ff6b6b;
+          color: white;
+          border: 1px solid #ddd;
+          padding: 10px 20px;
+          border-radius: 20px;
+          cursor: pointer;
+          margin-left: 10px;
+          transition: background-color 0.3s;
+        }
+
+        select,
+        input {
+          padding: 12px;
+          margin: 5px 0;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        label {
+          display: block;
+          margin: 10px 0;
+          font-weight: bold;
+          color: #444;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        h2 {
+          text-align: center;
+          margin-bottom: 30px;
+          font-size: 28px;
+        }
+      </style>
+      <script>
+        const activitiesList = document.getElementById('activitiesList');
+        const modal = document.getElementById('activityModal');
+        const fields = document.getElementById('fields');
+        let activities = [];
+
+        document.getElementById('addActivityBtn').onclick = () => toggleModal(true);
+        document.getElementById('cancelBtn').onclick = () => toggleModal(false);
+        document.getElementById('activityForm').onsubmit = saveActivity;
+
+        function toggleModal(show) {
+          modal.classList.toggle('show', show);
+        }
+
+        function saveActivity(e) {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const activity = {
+            details: Object.fromEntries(formData.entries())
+          };
+          activities.push(activity);
+          toggleModal(false);
+          renderActivities();
+          e.target.reset();
+        }
+
+        function renderActivities() {
+          activitiesList.innerHTML = '';
+          if (activities.length === 0) {
+            const noActivitiesMessage = document.createElement('p');
+            noActivitiesMessage.textContent = 'No workouts yet';
+            activitiesList.appendChild(noActivitiesMessage);
+            return;
+          }
+
+          activities.forEach((activity, i) => {
+            const activityItem = document.createElement('div');
+            activityItem.classList.add('activity-item', 'show');
+
+            const title = document.createElement('h4');
+            title.textContent = activity.details.name;
+            activityItem.appendChild(title);
+
+            const description = document.createElement('p');
+            description.textContent = `Sets: ${activity.details.sets} | Reps: ${activity.details.reps}`;
+            activityItem.appendChild(description);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-btn');
+            deleteButton.onclick = () => deleteActivity(i);
+            activityItem.appendChild(deleteButton);
+
+            activitiesList.appendChild(activityItem);
+          });
+        }
+
+        function deleteActivity(index) {
+          activities.splice(index, 1);
+          renderActivities();
+        }
+
+        renderActivities();
+      </script>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div id="Home" class="tabcontent">
       <h2>Welcome to Your Health Dashboard</h2>
       <!-- Home page widgets including important summarized information and easy interaction -->
-        <div class="widget-container">
-            <!-- Workout of the Day Widget -->
-            <div class="widget-large">
-                <h3>Workout of the Day</h3>
-                <p>30 minutes of strength training</p>
-                <p>15 minutes of cardio</p>
-                <p>Cool down with 10 minutes of stretching</p>
-            </div>
-            <!-- Smaller widgets for calorie tracking and weight logging -->
-            <div class="widget-small-container">
-                <!-- Calorie tracking widget -->
-                <div class="widget-small">
-                    <h4>Calorie Tracking</h4>
-                    <p>You are <strong>on track</strong> with your calories today!</p>
-                    <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
-                </div>
-                
-                <!-- Weight logging widget -->
-                <div class="widget-small">
-                    <h4>Log Weight</h4>
-                    <form>
-                        <label for="weight">Enter today's weight:</label><br>
-                        <input type="number" id="weight" name="weight" placeholder="lbs" style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
-                        <button type="button" onclick="logWeight()" style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Weight</button>
-                    </form>
-                    <p id="weightDisplay" style="margin-top: 1rem; color: #333;"></p>
-                </div>
-            </div>
+      <div class="widget-container">
+        <!-- Workout of the Day Widget -->
+        <div class="widget-large">
+          <h3>Workout of the Day</h3>
+          <p>30 minutes of strength training</p>
+          <p>15 minutes of cardio</p>
+          <p>Cool down with 10 minutes of stretching</p>
         </div>
+        <!-- Smaller widgets for calorie tracking and weight logging -->
+        <div class="widget-small-container">
+          <!-- Calorie tracking widget -->
+          <div class="widget-small">
+            <h4>Calorie Tracking</h4>
+            <p>You are <strong>on track</strong> with your calories today!</p>
+            <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
+          </div>
+
+          <!-- Weight logging widget -->
+          <div class="widget-small">
+            <h4>Log Weight</h4>
+            <form>
+              <label for="weight">Enter today's weight:</label><br>
+              <input type="number" id="weight" name="weight" placeholder="lbs"
+                style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
+              <button type="button" onclick="logWeight()"
+                style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
+                Weight</button>
+            </form>
+            <p id="weightDisplay" style="margin-top: 1rem; color: #333;"></p>
+          </div>
+        </div>
+      </div>
     </div>
     <script>
       // Load weight from localStorage on page load
       document.addEventListener('DOMContentLoaded', () => {
-            const savedWeight = localStorage.getItem('userWeight');
-            if (savedWeight) {
-                document.getElementById('weightDisplay').innerText = `Last logged weight: ${savedWeight} lbs`;
-            }
-        });
-
-        // Function to log weight and display it
-        function logWeight() {
-            const weightInput = document.getElementById('weight');
-            const weight = weightInput.value;
-
-            if (weight) {
-                // Save weight to localStorage
-                localStorage.setItem('userWeight', weight);
-
-                // Display the logged weight
-                document.getElementById('weightDisplay').innerText = `Last logged weight: ${weight} lbs`;
-
-                // Clear the input field
-                weightInput.value = '';
-            } else {
-                alert('Please enter a weight');
-            }
+        const savedWeight = localStorage.getItem('userWeight');
+        if (savedWeight) {
+          document.getElementById('weightDisplay').innerText = `Last logged weight: ${savedWeight} lbs`;
         }
+      });
+
+      // Function to log weight and display it
+      function logWeight() {
+        const weightInput = document.getElementById('weight');
+        const weight = weightInput.value;
+
+        if (weight) {
+          // Save weight to localStorage
+          localStorage.setItem('userWeight', weight);
+
+          // Display the logged weight
+          document.getElementById('weightDisplay').innerText = `Last logged weight: ${weight} lbs`;
+
+          // Clear the input field
+          weightInput.value = '';
+        } else {
+          alert('Please enter a weight');
+        }
+      }
     </script>
 
-    
+
     <div id="Milestones" class="tabcontent">
       <p>TODO</p>
     </div>
@@ -212,15 +422,16 @@
 
       <style>
         .profile_container .tabcontent {
-            background-color: white;
-            max-width: 500px;
-            margin: 0 auto;
-            margin-top: 50px;
-            padding: 30px;
-            border-radius: 10px;
+          background-color: white;
+          max-width: 500px;
+          margin: 0 auto;
+          margin-top: 50px;
+          padding: 30px;
+          border-radius: 10px;
         }
 
-        .profile_container input, .profile_container textarea {
+        .profile_container input,
+        .profile_container textarea {
           width: 100%;
           padding: 10px;
           margin: 10px 0;
@@ -240,32 +451,30 @@
           margin-top: 10px;
 
         }
-
-
       </style>
       <div id="Profile" class="tabcontent">
-        <img src = "images/profilepic.png" id = "profile_picture" alt ="dkfsjlf">
+        <img src="images/profilepic.png" id="profile_picture" alt="dkfsjlf">
         <form id="profile_form" onsubmit="handleSubmit(event)">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter your username">
-            <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Enter your email">
-            <label for="about">About you</label>
-            <textarea id="about" rows="6"></textarea>
-            <button type="submit">Save</button>
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Enter your name">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="Enter your email">
+          <label for="about">About you</label>
+          <textarea id="about" rows="6"></textarea>
+          <button type="submit">Save</button>
 
         </form>
-        
+
       </div>
     </div>
-  
-
-    
 
 
-    
+
+
+
+
   </div>
 
 
