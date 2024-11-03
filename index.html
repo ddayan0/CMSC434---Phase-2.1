@@ -453,22 +453,64 @@
         }
       </style>
       <div id="Profile" class="tabcontent">
-        <img src="images/profilepic.png" id="profile_picture" alt="dkfsjlf">
-        <form id="profile_form" onsubmit="handleSubmit(event)">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Enter your name">
-          <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your username">
-          <label for="email">Email</label>
-          <input type="text" id="email" placeholder="Enter your email">
-          <label for="about">About you</label>
-          <textarea id="about" rows="6"></textarea>
-          <button type="submit">Save</button>
+        <img src="images/profilepic.png" id="profile_picture" alt="Profile Picture">
+        <h2>Profile Settings</h2>
 
-        </form>
+        <div class="tab-buttons">
+            <button onclick="showSettingsTab('account')">Account</button>
+            <button onclick="showSettingsTab('preferences')">Preferences</button>
+            <button onclick="showSettingsTab('notifications')">Notifications</button>
+        </div>
 
-      </div>
+        <div id="settingsContent" class="scrollable-content">
+            <div id="accountSettings" class="settings-tab">
+                <h3>Account Settings</h3>
+                <div>
+                    <button onclick="showAccountOption('username')">Change Username</button>
+                    <button onclick="showAccountOption('password')">Change Password</button>
+                </div>
+                <div id="usernameSection" style="display:none;">
+                    <h3>Update Username</h3>
+                    <input type="text" id="username" placeholder="Enter new username">
+                    <button onclick="updateUsername()">Save Username</button>
+                </div>
+                <div id="passwordSection" style="display:none;">
+                    <h3>Update Password</h3>
+                    <input type="password" id="password" placeholder="Enter new password">
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                    <button onclick="updatePassword()">Save Password</button>
+                    <p id="passwordMessage"></p>
+                </div>
+            </div>
+
+            <div id="preferencesSettings" class="settings-tab" style="display:none;">
+                <h3>Preferences</h3>
+                <label>Preferred Workout Type</label>
+                <select id="workoutType">
+                    <option value="Strength">Strength</option>
+                    <option value="Cardio">Cardio</option>
+                    <option value="Yoga">Yoga</option>
+                </select>
+                <button onclick="updatePreferences()">Save Preferences</button>
+            </div>
+
+            <div id="notificationsSettings" class="settings-tab" style="display:none;">
+                <h3>Notification Settings</h3>
+                <label class="toggle-switch">
+                    Workout Reminders
+                    <input type="checkbox" id="workoutNotification">
+                    <span class="slider"></span>
+                </label>
+                <label class="toggle-switch">
+                    Daily Goals Reminder
+                    <input type="checkbox" id="goalsNotification">
+                    <span class="slider"></span>
+                </label>
+                <button onclick="updateNotifications()">Save Notification Settings</button>
+            </div>
+        </div>
     </div>
+   </div>
 
 
 

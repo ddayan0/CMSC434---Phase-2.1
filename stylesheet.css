@@ -198,5 +198,25 @@ div.banner {
 
 
 
+.tab-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  background-color: #32A86D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.settings-tab {
+  display: none;
+}
+
 
 

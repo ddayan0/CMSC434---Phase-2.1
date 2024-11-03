@@ -80,3 +80,75 @@ function newElement() {
     }
   }
 }
+
+
+document.addEventListener('DOMContentLoaded', loadProfileData);
+
+function loadProfileData() {
+    const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+
+    document.getElementById('username').value = profileData.username || '';
+    document.getElementById('dietPreference').value = profileData.preferences?.dietPreference || 'None';
+    document.getElementById('workoutType').value = profileData.preferences?.workoutType || 'Strength';
+    document.getElementById('workoutNotification').checked = profileData.notifications?.workout || false;
+    document.getElementById('goalsNotification').checked = profileData.notifications?.goals || false;
+}
+
+function showSettingsTab(tab) {
+    document.querySelectorAll('.settings-tab').forEach(el => el.style.display = 'none');
+    document.getElementById(`${tab}Settings`).style.display = 'block';
+}
+
+function showAccountOption(option) {
+    document.getElementById('usernameSection').style.display = option === 'username' ? 'block' : 'none';
+    document.getElementById('passwordSection').style.display = option === 'password' ? 'block' : 'none';
+}
+
+function updateUsername() {
+    const username = document.getElementById('username').value;
+    if (username) {
+        saveToProfileData('username', username);
+        alert('Username updated successfully!');
+    } else {
+        alert('Please enter a valid username.');
+    }
+}
+
+function updatePassword() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const passwordMessage = document.getElementById('passwordMessage');
+
+    if (password && password === confirmPassword) {
+        saveToProfileData('password', password);
+        passwordMessage.textContent = 'Password updated successfully!';
+        passwordMessage.style.color = 'green';
+    } else {
+        passwordMessage.textContent = 'Passwords do not match!';
+        passwordMessage.style.color = 'red';
+    }
+
+    document.getElementById('password').value = '';
+    document.getElementById('confirmPassword').value = '';
+}
+
+function updatePreferences() {
+    const workoutType = document.getElementById('workoutType').value;
+
+    saveToProfileData('preferences', { workoutType});
+    alert('Preferences updated successfully!');
+}
+
+function updateNotifications() {
+    const workoutNotification = document.getElementById('workoutNotification').checked;
+    const goalsNotification = document.getElementById('goalsNotification').checked;
+
+    saveToProfileData('notifications', { workout: workoutNotification, goals: goalsNotification });
+    alert('Notification settings updated!');
+}
+
+function saveToProfileData(key, value) {
+    const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+    profileData[key] = value;
+    localStorage.setItem('profileData', JSON.stringify(profileData));
+}
