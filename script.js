@@ -134,8 +134,11 @@ function updatePassword() {
 
 function updatePreferences() {
     const workoutType = document.getElementById('workoutType').value;
+    const weightType = document.getElementById('weightType').value;
 
     saveToProfileData('preferences', { workoutType});
+    saveToProfileData('preferences', { weightType});
+
     alert('Preferences updated successfully!');
 }
 
