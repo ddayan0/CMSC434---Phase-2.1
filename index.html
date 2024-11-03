@@ -57,45 +57,28 @@
 
 
     <div id="Calories" class="tabcontent">
-      <h1>Choices</h1>
-      <h3>Hat Color #1</h3>
-      <form name="weightform">
-        <input type="radio" id="RadioRed" name="weight_opt" value="Red">
-        <label for="RadioRed">Red</label><br>
-        <input type="radio" id="RadioBlue" name="weight_opt" value="Blue">
-        <label for="RadioBlue">Blue</label><br>
-      </form>
+      
+      <div class="widget-small-container">
+        <!-- Calorie tracking widget -->
+        <div class="widget-small">
+          <h4>Calorie Tracking</h4>
+          <p>You are <strong>on track</strong> with your calories today!</p>
+          <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
+        </div>
 
-      <h3>Hat Color #2</h3>
-      <br>
-      <select name="timeframe" id="timeframe">
-        <option value="Red">Red</option>
-        <option value="Blue">Blue</option>
-      </select>
-      <br>
-      <button onclick="printHatColors()">Print Hat Colors</button>
-      <div id="hatColorsDisplay"></div>
-      <script>
-        function printHatColors() {
-          const radioButtons = document.getElementsByName('weight_opt');
-          let selectedRadioValue = '';
-          for (const radioButton of radioButtons) {
-            if (radioButton.checked) {
-              selectedRadioValue = radioButton.value;
-              break;
-            }
-          }
-          const selectedDropdownValue = document.getElementById('timeframe').value;
-
-          const hatColorsDiv = document.getElementById('hatColorsDisplay');
-          hatColorsDiv.innerHTML =
-            `
-        <p>First hat color: ${selectedRadioValue}</p>
-        <p>Second hat color: ${selectedDropdownValue}</p>
-        `;
-        }
-
-      </script>
+        <!-- Weight logging widget -->
+        <div class="widget-small">
+          <h4>Log Weight</h4>
+          <form>
+            <label for="weight">Enter today's weight:</label><br>
+            <input type="number" id="weight" name="weight" placeholder="lbs"
+              style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
+            <button type="button" onclick="logWeight()"
+              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
+              Weight</button>
+          </form>
+          <p id="weightDisplay" style="margin-top: 1rem; color: #333;"></p>
+        </div>
 
     </div>
 
@@ -332,16 +315,6 @@
         renderActivities();
       </script>
     </div>
-
-
-
-
-
-
-
-
-
-
 
     <div id="Home" class="tabcontent">
       <h2>Welcome to Your Health Dashboard</h2>
