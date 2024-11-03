@@ -63,7 +63,18 @@
         <div class="widget-small">
           <h4>Calorie Tracking</h4>
           <p>You are <strong>on track</strong> with your calories today!</p>
-          <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
+          <form>
+            <label for="calories">Enter Calories:</label><br>
+            <input type="number" id="calories" name="calories" placeholder="cals"
+              style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
+            <button type="button" onclick="logCalories()"
+              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
+              Calories</button>
+            <button type="button" onclick="resetCalories()"
+              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset
+              Calories</button>
+          </form>
+          <p id="calorieDisplay" style="margin-top: 1rem; color: #333;"></p>
         </div>
 
         <!-- Weight logging widget -->
@@ -333,8 +344,13 @@
           <!-- Calorie tracking widget -->
           <div class="widget-small">
             <h4>Calorie Tracking</h4>
-            <p>You are <strong>on track</strong> with your calories today!</p>
-            <button class="calorie-widget-button" onclick="openCity('Calories', this, 'grey')">Log Calories</button>
+            <form>
+              <label for="logCalories">Input Calories:</label><br>
+              <input type="number" id="logCalories" name="logCalories"
+                style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
+              <button type="button" onclick="logCalories()"
+                style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log Calories</button>
+            </form>
           </div>
 
           <!-- Weight logging widget -->
@@ -361,7 +377,14 @@
           document.getElementById('weightDisplay').innerText = `Last logged weight: ${savedWeight} lbs`;
         }
       });
-
+      // Load Calories from localStorage on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedCalories = localStorage.getItem('userCalories');
+        if (savedCalories) {
+          document.getElementById('calorieDisplay').innerText = `Current Calories: ${savedCalories} cals`;
+        }
+      });
+      
       // Function to log weight and display it
       function logWeight() {
         const weightInput = document.getElementById('weight');
@@ -380,6 +403,37 @@
           alert('Please enter a weight');
         }
       }
+
+      // Function to log calories, track, and display it
+      function logCalories() {
+        const calorieInput = document.getElementById('calories');
+        const currCalories = localStorage.getItem('userCalories');
+        const calories = Number(calorieInput.value) + Number(currCalories);
+
+        if (calories) {
+          // Save weight to localStorage
+          localStorage.setItem('userCalories', calories);
+
+          // Display the logged weight
+          document.getElementById('calorieDisplay').innerText = `Current Calories: ${calories} cals`;
+
+          // Clear the input field
+          calorieInput.value = '';
+        } else {
+          alert('Please enter number of calories');
+        }
+      }
+      function resetCalories() {
+        const calories = localStorage.getItem('userCalories');
+        if(calories){
+          localStorage.setItem('userCalories', 0);
+          currCalories = 0;
+          document.getElementById('calorieDisplay').innerText = `Current Calories: ${currCalories} cals`;
+        } else {
+          alert('Calories have already been reset')
+        }
+      }
+
     </script>
 
 
