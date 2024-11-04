@@ -641,6 +641,8 @@
     function updateGraph() {
       const selectedMetric = document.getElementById('metricDropdown').value;
       const goalWeight = -1; // TODO
+      data.calories = JSON.parse(localStorage.getItem('calorieLog')) || [];
+      data.weight = JSON.parse(localStorage.getItem('weightLog')) || [];
       const metricData = selectedMetric === 'weight' ? data.weight : data.calories;
       drawGraph(metricData, goalWeight);
     }
@@ -653,27 +655,27 @@
     };
 
     function resetCalorieLog() {
-    // Clear the calorie log list from local storage
-    localStorage.setItem('calorieLog', JSON.stringify([])); // Reset to an empty array
+      // Clear the calorie log list from local storage
+      localStorage.setItem('calorieLog', JSON.stringify([])); // Reset to an empty array
     
-    // Confirm to the user
-    alert("Calorie log has been reset.");
-    }
-    if (!Array.isArray(data.calories)) {
-    console.error("Failed to load calorie log from local storage. Resetting to empty array.");
-    data.calories = [];
-    }
+      // Confirm to the user
+      alert("Calorie log has been reset.");
+      }
+      if (!Array.isArray(data.calories)) {
+        console.error("Failed to load calorie log from local storage. Resetting to empty array.");
+        data.calories = [];
+      }
 
     function resetWeightLog() {
-    // Clear the calorie log list from local storage
-    localStorage.setItem('weightLog', JSON.stringify([])); // Reset to an empty array
+      // Clear the calorie log list from local storage
+      localStorage.setItem('weightLog', JSON.stringify([])); // Reset to an empty array
     
-    // Confirm to the user
-    alert("Weight log has been reset.");
-    }
-    if (!Array.isArray(data.weight)) {
-    console.error("Failed to load calorie log from local storage. Resetting to empty array.");
-    data.weight = [];
+      // Confirm to the user
+      alert("Weight log has been reset.");
+      }
+      if (!Array.isArray(data.weight)) {
+        console.error("Failed to load calorie log from local storage. Resetting to empty array.");
+        data.weight = [];
     }
     drawGraph(data.weight, -1); 
   </script>
