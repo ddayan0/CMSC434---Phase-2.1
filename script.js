@@ -16,7 +16,7 @@ function openCity(cityName, elmnt, color) {
   document.getElementById(cityName).style.display = "block";
 
   // Add the specific color to the button used to open the tab content
-  elmnt.style.backgroundColor = color;
+  elmnt.style.backgroundColor = "";
 }
 
 // Get the element with id="defaultOpen" and click on it
@@ -26,7 +26,7 @@ document.getElementById("defaultOpen").click();
 
 
 
-var myNodelist = document.getElementsByTagName("LI");
+/* var myNodelist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
@@ -79,7 +79,7 @@ function newElement() {
       div.style.display = "none";
     }
   }
-}
+}*/
 
 
 document.addEventListener('DOMContentLoaded', loadProfileData);

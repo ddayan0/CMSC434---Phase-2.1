@@ -14,10 +14,11 @@
       width: 640px;
       height: 960px;
       overflow: hidden;
-      background-color: #32A86D;
+      background-color: #57CC99;
       position: relative;
       font-family: Arial, Helvetica, sans-serif;
       border-radius: 30px;
+      border: solid black .07rem;
     }
 
     h1 {
@@ -29,6 +30,7 @@
 
 <body>
   <div class="device">
+
     <div class="nav-bar">
 
       <button class="tablink" onclick="openCity('Calories', this, 'grey')">
@@ -68,10 +70,10 @@
             <input type="number" id="calories" name="calories" placeholder="cals"
               style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
             <button type="button" onclick="logCalories()"
-              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
+              style="padding: 0.5rem 1rem; background-color: #38A3A5; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
               Calories</button>
             <button type="button" onclick="resetCalories()"
-              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset
+              style="padding: 0.5rem 1rem; background-color: #38A3A5; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset
               Calories</button>
           </form>
           <p id="calorieDisplay" style="margin-top: 1rem; color: #333;"></p>
@@ -85,7 +87,7 @@
             <input type="number" id="weight" name="weight" placeholder="lbs"
               style="width: 80%; padding: 0.5rem; margin-top: 0.5rem;"><br><br>
             <button type="button" onclick="logWeight()"
-              style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
+              style="padding: 0.5rem 1rem; background-color: #38A3A5; color: white; border: none; border-radius: 5px; cursor: pointer;">Log
               Weight</button>
           </form>
           <p id="weightDisplay" style="margin-top: 1rem; color: #333;"></p>
@@ -136,7 +138,7 @@
           margin: 20px auto;
           padding: 30px;
           font-family: 'Segoe UI', Arial, sans-serif;
-          background-color: #32A86D;
+          background-color: #57CC99;
           color: white;
           min-height: calc(100vh-70px);
           position: relative;
@@ -160,7 +162,7 @@
         }
 
         .modal h3 {
-          color: #32A86D;
+          color: #57CC99;
           margin-top: 0;
           margin-bottom: 20px;
         }
@@ -212,7 +214,7 @@
         }
 
         #saveBtn {
-          background-color: #34b96c;
+          background-color: #38A3A5;
           color: white;
           border: none;
           padding: 10px 20px;
@@ -483,17 +485,24 @@
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
+      
+      background: #fff;
+      
+      padding: .5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     
     }
 
     .metric-dropdown, .update-button {
       padding: 10px;
-      border: 2px solid #5DA3FA;
+      border: 2px solid #38A3A5;
       border-radius: 8px;
       margin-right: 10px;
     }
 
     .update-button {
-      background: #5DA3FA;
+      background: #38A3A5;
       color: white;
       cursor: pointer;
     }
@@ -672,9 +681,6 @@
 
 
 
-
-
-
     <div class="profile_container">
 
       <style>
@@ -698,7 +704,7 @@
         }
 
         .profile_container button {
-          background-color: #32A86D;
+          background-color: #38A3A5;
           color: white;
           padding: 10px 20px;
           border: none;
