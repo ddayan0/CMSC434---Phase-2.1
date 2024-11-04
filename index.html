@@ -395,7 +395,10 @@
         const weight = weightInput.value;
 
         if (weight) {
-          // Save weight to localStorage
+          
+          const weightLog = JSON.parse(localStorage.getItem('weightLog')) || [];
+          weightLog.push(Number(weight));
+          localStorage.setItem('weightLog', JSON.stringify(weightLog));// Save weight to localStorage
           localStorage.setItem('userWeight', weight);
 
           // Display the logged weight
@@ -428,13 +431,18 @@
         }
       }
       function resetCalories() {
-        const calories = localStorage.getItem('userCalories');
-        if(calories){
+        const currCalories = localStorage.getItem('userCalories');
+
+        if (currCalories) {
+          // Retrieve the calorie log from localStorage or initialize an empty array if it doesn't exist
+          const calorieLog = JSON.parse(localStorage.getItem('calorieLog')) || [];
+          calorieLog.push(Number(currCalories));
+          localStorage.setItem('calorieLog', JSON.stringify(calorieLog));
           localStorage.setItem('userCalories', 0);
-          currCalories = 0;
-          document.getElementById('calorieDisplay').innerText = `Current Calories: ${currCalories} cals`;
+          document.getElementById('calorieDisplay').innerText = `Current Calories: 0 cals`;
+
         } else {
-          alert('Calories have already been reset')
+          alert('Calories have already been reset');
         }
       }
 
@@ -511,6 +519,13 @@
     <div id="goalText" class="goal-text"></div>
   </div>
 
+  <button type="button" onclick="resetCalorieLog()"
+  style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset
+  Calorie Log</button>
+  <button type="button" onclick="resetWeightLog()"
+  style="padding: 0.5rem 1rem; background-color: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset
+  Weight Log</button>
+
   <!-- Data Summary Section -->
   <div class="data-summary">
    
@@ -518,6 +533,10 @@
 
   <script>
     // Hardcoded data for weight and calories
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const calorieList = JSON.parse(localStorage.getItem('calorieLog')) || [];
+      });
     
 
     const canvas = document.getElementById('graphCanvas');
@@ -620,9 +639,33 @@
     document.getElementById('showGraphButton').addEventListener('click', updateGraph);
 
     const data = {
-      weight: [120, 150, 140, 130, 160, 170, 110, 145],
-      calories: [2000, 2200, 2100, 1800, 2500, 2300],
+      weight: JSON.parse(localStorage.getItem('weightLog')) || [],
+      calories: JSON.parse(localStorage.getItem('calorieLog')) || []
     };
+
+    function resetCalorieLog() {
+    // Clear the calorie log list from local storage
+    localStorage.setItem('calorieLog', JSON.stringify([])); // Reset to an empty array
+    
+    // Confirm to the user
+    alert("Calorie log has been reset.");
+    }
+    if (!Array.isArray(data.calories)) {
+    console.error("Failed to load calorie log from local storage. Resetting to empty array.");
+    data.calories = [];
+    }
+
+    function resetWeightLog() {
+    // Clear the calorie log list from local storage
+    localStorage.setItem('weightLog', JSON.stringify([])); // Reset to an empty array
+    
+    // Confirm to the user
+    alert("Weight log has been reset.");
+    }
+    if (!Array.isArray(data.weight)) {
+    console.error("Failed to load calorie log from local storage. Resetting to empty array.");
+    data.weight = [];
+    }
     drawGraph(data.weight, -1); 
   </script>
 </div>
