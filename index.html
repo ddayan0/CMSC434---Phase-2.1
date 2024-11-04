@@ -328,6 +328,9 @@
       </script>
     </div>
 
+
+
+
     <div id="Home" class="tabcontent">
       <h2>Welcome to Your Health Dashboard</h2>
       <!-- Home page widgets including important summarized information and easy interaction -->
@@ -369,6 +372,7 @@
         </div>
       </div>
     </div>
+
     <script>
       // Load weight from localStorage on page load
       document.addEventListener('DOMContentLoaded', () => {
@@ -436,10 +440,197 @@
 
     </script>
 
+<div id="Milestones" class="tabcontent">
+  <style>
+    .graph-container {
+      background: #fff;
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-    <div id="Milestones" class="tabcontent">
-      <p>TODO</p>
-    </div>
+    .graph-canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .goal-text {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #FF5733;
+    }
+
+    .metric-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .metric-dropdown, .update-button {
+      padding: 10px;
+      border: 2px solid #5DA3FA;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
+
+    .update-button {
+      background: #5DA3FA;
+      color: white;
+      cursor: pointer;
+    }
+
+    .data-summary {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+      margin-top: 20px;
+    }
+  </style>
+
+  <div class="metric-selector">
+    <select id="metricDropdown" class="metric-dropdown">
+      <option value="weight">Weight</option>
+      <option value="calories">Calories Eaten</option>
+    </select>
+    <button class="update-button" id="showGraphButton">Show Graph</button>
+  </div>
+
+  <div class="graph-container">
+    <canvas id="graphCanvas" class="graph-canvas"></canvas>
+    <div id="goalText" class="goal-text"></div>
+  </div>
+
+  <!-- Data Summary Section -->
+  <div class="data-summary">
+   
+  </div>
+
+  <script>
+    // Hardcoded data for weight and calories
+    
+
+    const canvas = document.getElementById('graphCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 350;
+
+    function drawGrid() {
+      const pad = 50;
+      const gWidth = canvas.width - pad * 2;
+      const gHeight = canvas.height - pad * 2;
+      const stepX = gWidth / (data.weight.length - 1);
+      const stepY = gHeight / 5; // 5 horizontal grid lines
+
+      ctx.strokeStyle = '#e0e0e0'; // Light gray for the grid
+      ctx.lineWidth = 1;
+
+      // Draw vertical grid lines
+      for (let i = 0; i < data.weight.length; i++) {
+        const x = pad + i * stepX;
+        ctx.beginPath();
+        ctx.moveTo(x, pad);
+        ctx.lineTo(x, canvas.height - pad);
+        ctx.stroke();
+      }
+
+      // Draw horizontal grid lines
+      for (let i = 0; i <= 5; i++) {
+        const y = pad + i * stepY;
+        ctx.beginPath();
+        ctx.moveTo(pad, y);
+        ctx.lineTo(canvas.width - pad, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawGraph(dataList, goalWeight) {
+      const maxVal = Math.max(...dataList);
+      const pad = 50;
+      const gWidth = canvas.width - pad * 2;
+      const gHeight = canvas.height - pad * 2;
+      const stepX = gWidth / (dataList.length - 1);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      drawGrid();
+
+      ctx.beginPath();
+      ctx.moveTo(pad, pad + gHeight - (dataList[0] / maxVal) * gHeight);
+
+      for (let i = 0; i < dataList.length; i++) {
+        const x = pad + i * stepX;
+        const y = pad + gHeight - (dataList[i] / maxVal) * gHeight;
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = '#5DA3FA';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      for (let i = 0; i < dataList.length; i++) {
+        const x = pad + i * stepX;
+        const y = pad + gHeight - (dataList[i] / maxVal) * gHeight;
+        ctx.fillStyle = '#5DA3FA';
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#333';
+        ctx.font = '12px Arial';
+        ctx.fillText(dataList[i], x - 10, y - 10);
+      }
+
+      // NO GOAL LINE IF = -1
+      if (goalWeight !== -1) {
+        const goalY = pad + gHeight - (goalWeight / maxVal) * gHeight;
+        ctx.strokeStyle = '#FF5733';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(pad, goalY);
+        ctx.lineTo(canvas.width - pad, goalY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const goalTextElement = document.getElementById('goalText');
+        goalTextElement.innerText = `Goal: ${goalWeight}`;
+      } else {
+        document.getElementById('goalText').innerText = '';
+      }
+
+      document.getElementById('latestData').innerText = `Latest Data: ${dataList[dataList.length - 1]}`;
+    }
+
+    function updateGraph() {
+      const selectedMetric = document.getElementById('metricDropdown').value;
+      const goalWeight = -1; // TODO
+      const metricData = selectedMetric === 'weight' ? data.weight : data.calories;
+      drawGraph(metricData, goalWeight);
+    }
+
+    document.getElementById('showGraphButton').addEventListener('click', updateGraph);
+
+    const data = {
+      weight: [120, 150, 140, 130, 160, 170, 110, 145],
+      calories: [2000, 2200, 2100, 1800, 2500, 2300],
+    };
+    drawGraph(data.weight, -1); 
+  </script>
+</div>
+
+
+
+
+
 
     <div class="profile_container">
 
