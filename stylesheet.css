@@ -25,7 +25,7 @@
 }
 
 .tablink:hover {
-  background-color: #C7F9CC;
+  background-color: #BEDFE0;
 }
 
 .tablink img{
@@ -99,6 +99,13 @@ h1 {
   font-size: 24px;
   margin:0;
 }
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: white;
+  }
 
 .card {
   background-color: white;
