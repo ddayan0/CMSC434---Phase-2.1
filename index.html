@@ -587,21 +587,31 @@
 
     function drawGraph(dataList, goalWeight) {
       const maxVal = Math.max(...dataList);
+      const minVal = Math.min(...dataList);
+      const paddingFactor = 0.1; // Adjusts padding based on data range
+
+      const range = maxVal - minVal;
+      const upperBound = maxVal + range * paddingFactor;
+      const lowerBound = minVal - range * paddingFactor;
+
       const pad = 50;
       const gWidth = canvas.width - pad * 2;
       const gHeight = canvas.height - pad * 2;
       const stepX = gWidth / (dataList.length - 1);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       drawGrid();
 
       ctx.beginPath();
-      ctx.moveTo(pad, pad + gHeight - (dataList[0] / maxVal) * gHeight);
+      ctx.moveTo(
+        pad,
+        pad + gHeight - ((dataList[0] - lowerBound) / (upperBound - lowerBound)) * gHeight
+      );
 
       for (let i = 0; i < dataList.length; i++) {
         const x = pad + i * stepX;
-        const y = pad + gHeight - (dataList[i] / maxVal) * gHeight;
+        const y = pad + gHeight - ((dataList[i] - lowerBound) / (upperBound - lowerBound)) * gHeight;
         ctx.lineTo(x, y);
       }
       ctx.strokeStyle = '#5DA3FA';
@@ -610,7 +620,7 @@
 
       for (let i = 0; i < dataList.length; i++) {
         const x = pad + i * stepX;
-        const y = pad + gHeight - (dataList[i] / maxVal) * gHeight;
+        const y = pad + gHeight - ((dataList[i] - lowerBound) / (upperBound - lowerBound)) * gHeight;
         ctx.fillStyle = '#5DA3FA';
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -620,9 +630,9 @@
         ctx.fillText(dataList[i], x - 10, y - 10);
       }
 
-      // NO GOAL LINE IF = -1
+      // Draw the goal line if goalWeight is specified
       if (goalWeight !== -1) {
-        const goalY = pad + gHeight - (goalWeight / maxVal) * gHeight;
+        const goalY = pad + gHeight - ((goalWeight - lowerBound) / (upperBound - lowerBound)) * gHeight;
         ctx.strokeStyle = '#FF5733';
         ctx.lineWidth = 2;
         ctx.setLineDash([5, 5]);
@@ -640,6 +650,7 @@
 
       document.getElementById('latestData').innerText = `Latest Data: ${dataList[dataList.length - 1]}`;
     }
+
 
     function updateGraph() {
       const selectedMetric = document.getElementById('metricDropdown').value;
